@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://dw6t44c5d86x6"]
+
+[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_6gyws"]
+[ext_resource type="Script" path="res://Script/Player.cs" id="1_b8taj"]
+[ext_resource type="Script" path="res://Script/GameManager.cs" id="1_nwie3"]
+[ext_resource type="PackedScene" uid="uid://bhygs2ahhgx47" path="res://Scene/Ball.tscn" id="3_oic01"]
+[ext_resource type="PackedScene" uid="uid://fcg8mcrkltjn" path="res://Scene/Brick.tscn" id="5_876y1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sa4f"]
+size = Vector2(127, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1mgm"]
+size = Vector2(187, 689)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ri36w"]
+size = Vector2(1158, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itnq4"]
+size = Vector2(1194, 47)
+
+[node name="Scene" type="Node2D"]
+script = ExtResource("1_nwie3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 327)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(525, 604)
+script = ExtResource("1_b8taj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_3sa4f")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(1, 0.0546875)
+texture = ExtResource("1_6gyws")
+
+[node name="BallManager" type="Node" parent="."]
+
+[node name="Ball" parent="BallManager" instance=ExtResource("3_oic01")]
+position = Vector2(525, 590)
+
+[node name="BrickManager" type="Node" parent="."]
+
+[node name="Brick" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(96, 109)
+
+[node name="Brick2" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(169, 109)
+
+[node name="Brick3" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(239, 109)
+
+[node name="Brick4" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(312, 109)
+
+[node name="Brick5" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(382, 109)
+
+[node name="Brick6" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(455, 109)
+
+[node name="Brick7" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(525, 109)
+
+[node name="Brick8" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(598, 109)
+
+[node name="Brick9" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(601, 138)
+
+[node name="Brick10" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(674, 138)
+
+[node name="Brick11" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(744, 138)
+
+[node name="Brick12" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(817, 138)
+
+[node name="Brick13" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(887, 138)
+
+[node name="Brick14" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(960, 138)
+
+[node name="Brick15" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(1030, 138)
+
+[node name="Brick16" parent="BrickManager" instance=ExtResource("5_876y1")]
+position = Vector2(1103, 138)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-94, 335)
+shape = SubResource("RectangleShape2D_q1mgm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+position = Vector2(1243, 335)
+shape = SubResource("RectangleShape2D_q1mgm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wall"]
+position = Vector2(569, -8)
+shape = SubResource("RectangleShape2D_ri36w")
+
+[node name="OutArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutArea"]
+position = Vector2(580, 712.5)
+shape = SubResource("RectangleShape2D_itnq4")
