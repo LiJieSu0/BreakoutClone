@@ -6,9 +6,12 @@ public partial class Ball : CharacterBody2D
 	public const float Speed = 100.0f;
 	public const float JumpVelocity = -400.0f;
 	private Vector2 _dir;
+    private ScoreLabel _scoreLabel;
+
 
     public override void _Ready(){
 		// Velocity=new Vector2(0,0);
+		_scoreLabel=GetParent().GetParent().GetNode<ScoreLabel>("ScoreLabel");
 		ShootBall();
 
     }
@@ -18,8 +21,10 @@ public partial class Ball : CharacterBody2D
 		KinematicCollision2D collision = MoveAndCollide(_velocity);
 		if(collision!=null){
 			_dir = _dir.Bounce(collision.GetNormal());
-			if(collision.GetCollider() is Brick brick)
-			brick.QueueFree();
+			if(collision.GetCollider() is Brick brick){
+				brick.QueueFree();
+				_scoreLabel.AddScore();
+			}
 		}
 		MoveAndCollide(_velocity);
 	}
