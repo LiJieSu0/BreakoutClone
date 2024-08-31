@@ -14,17 +14,17 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-
-		if (Input.IsActionJustPressed("ui_accept") )
+		if (Input.IsActionJustPressed("ui_accept") ) //Space key pressed
 		{
-			// _mainBall.ShootBall();
-			// GetParent().GetNode("BallManager").AddChild(_mainBall);
+			var originalPos=_mainBall.GlobalPosition; //Save original pos, and remove mainball from child, add to ballManager node, then set the pos and shoot.
+			RemoveChild(_mainBall);
+			GetParent().GetNode("BallManager").AddChild(_mainBall);
+			_mainBall.GlobalPosition=originalPos;
+			_mainBall.ShootBall();
 			//TODO shoot the ball
 			
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
@@ -40,6 +40,6 @@ public partial class Player : CharacterBody2D
 	}
 
 	private void InitializeNode(){
-		_mainBall=GetParent().GetNode<Ball>("BallManager/Ball");
+		_mainBall=GetNode<Ball>("Ball");
 	}
 }

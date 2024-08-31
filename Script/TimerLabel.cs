@@ -16,6 +16,4 @@ public partial class TimerLabel : Label
 			this.Text=time.ToString("F2");
 		}
 	}
-
-
 }

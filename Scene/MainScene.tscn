@@ -38,10 +38,10 @@ shape = SubResource("RectangleShape2D_3sa4f")
 scale = Vector2(1, 0.0546875)
 texture = ExtResource("1_6gyws")
 
-[node name="BallManager" type="Node" parent="."]
+[node name="Ball" parent="Player" instance=ExtResource("3_oic01")]
+position = Vector2(0, -14)
 
-[node name="Ball" parent="BallManager" instance=ExtResource("3_oic01")]
-position = Vector2(525, 590)
+[node name="BallManager" type="Node" parent="."]
 
 [node name="BrickManager" type="Node" parent="."]
 
@@ -123,7 +123,7 @@ offset_right = 674.0
 offset_bottom = 92.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
-text = "00.00"
+text = "99.99"
 script = ExtResource("6_ixoaw")
 
 [node name="ScoreLabel" type="Label" parent="."]

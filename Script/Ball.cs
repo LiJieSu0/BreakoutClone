@@ -11,8 +11,8 @@ public partial class Ball : CharacterBody2D
 
     public override void _Ready(){
 		// Velocity=new Vector2(0,0);
-		_scoreLabel=GetParent().GetParent().GetNode<ScoreLabel>("ScoreLabel");
-		ShootBall();
+		_scoreLabel=GetTree().CurrentScene.GetNode<ScoreLabel>("ScoreLabel");
+		// ShootBall();
 
     }
     public override void _PhysicsProcess(double delta)
