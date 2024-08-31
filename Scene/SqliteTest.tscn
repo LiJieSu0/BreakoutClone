@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://c352t8ia3m675"]
+
+[ext_resource type="Script" path="res://Script/SqliteTest.cs" id="1_uddmk"]
+
+[node name="SqliteTest" type="Node2D"]
+script = ExtResource("1_uddmk")
+
+[node name="InsertBtn" type="Button" parent="."]
+offset_left = 84.0
+offset_top = 115.0
+offset_right = 229.0
+offset_bottom = 180.0
+text = "Insert"
+
+[node name="CreateTableBtn" type="Button" parent="."]
+offset_left = 84.0
+offset_top = 37.0
+offset_right = 229.0
+offset_bottom = 102.0
+text = "CreateTable"
+
+[node name="SearchBtn" type="Button" parent="."]
+offset_left = 85.0
+offset_top = 198.0
+offset_right = 230.0
+offset_bottom = 263.0
+text = "Search"
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 84.0
+offset_top = 286.0
+offset_right = 229.0
+offset_bottom = 351.0
+text = "CreateTable"
+
+[node name="SearchResult" type="TextEdit" parent="."]
+offset_left = 354.0
+offset_top = 216.0
+offset_right = 799.0
+offset_bottom = 417.0
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 46.0
+offset_right = 340.0
+offset_bottom = 69.0
+text = "Name
+"
+
+[node name="NameTextEdit" type="TextEdit" parent="NameLabel"]
+offset_left = 48.0
+offset_top = -7.0
+offset_right = 270.0
+offset_bottom = 64.0
+placeholder_text = "Enter your name..."
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 132.0
+offset_right = 347.0
+offset_bottom = 155.0
+text = "Score
+"
+
+[node name="ScoreTextEdit" type="TextEdit" parent="ScoreLabel"]
+offset_left = 48.0
+offset_top = -7.0
+offset_right = 270.0
+offset_bottom = 64.0
+placeholder_text = "Enter your score..."
