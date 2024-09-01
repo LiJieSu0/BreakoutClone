@@ -22,7 +22,8 @@ public partial class Ball : CharacterBody2D
 		if(collision!=null){
 			_dir = _dir.Bounce(collision.GetNormal());
 			if(collision.GetCollider() is Brick brick){
-				brick.QueueFree();
+				//TODO generate some item brick.GlobalPosition;
+				brick.OnHit();
 				_scoreLabel.AddScore();
 			}
 		}

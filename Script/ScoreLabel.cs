@@ -6,6 +6,7 @@ public partial class ScoreLabel : Label
 	int score=0;
 	public override void _Ready()
 	{
+		this.Text="Score: "+score.ToString();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,5 +17,4 @@ public partial class ScoreLabel : Label
 		GD.Print("Add score");
 		this.score+=value;
 	}
-
 }

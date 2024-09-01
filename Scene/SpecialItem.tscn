@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxsaw0sl31svd"]
+
+[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_k6pv1"]
+[ext_resource type="Script" path="res://Script/SpecialItem.cs" id="1_tl165"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skmsc"]
+
+[node name="SpecialItem" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_tl165")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_k6pv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_skmsc")

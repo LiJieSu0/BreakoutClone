@@ -14,6 +14,7 @@ public partial class GameManager : Node2D{
 
 	private Area2D OutArea;
 	public GameState gameState;
+	public bool isGameStarted=false;
 
 	public override void _Ready()
 	{
@@ -29,7 +30,7 @@ public partial class GameManager : Node2D{
 
     public override void _Process(double delta)
 	{
-		if(BallManager.GetChildCount()==0 ||BrickManager.GetChildCount()==0){ //TODO add if brick equal to zero
+		if((isGameStarted&&BallManager.GetChildCount()==0) ||BrickManager.GetChildCount()==0){ //TODO add if brick equal to zero
 			gameState=GameState.GameOver;
 		}
 		if(gameState==GameState.GameOver)
