@@ -33,8 +33,10 @@ public partial class GameManager : Node2D{
 		if((isGameStarted&&BallManager.GetChildCount()==0) ||BrickManager.GetChildCount()==0){ //TODO add if brick equal to zero
 			gameState=GameState.GameOver;
 		}
-		if(gameState==GameState.GameOver)
+		if(gameState==GameState.GameOver){
+			Engine.TimeScale=0;
 			GD.Print("GameOver");
+		}
 
 	}
 

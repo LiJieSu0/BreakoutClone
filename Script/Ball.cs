@@ -3,8 +3,7 @@ using System;
 
 public partial class Ball : CharacterBody2D
 {
-	public const float Speed = 100.0f;
-	public const float JumpVelocity = -400.0f;
+	public float Speed = 100.0f;
 	private Vector2 _dir;
     private ScoreLabel _scoreLabel;
 

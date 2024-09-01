@@ -6,8 +6,9 @@ public partial class Player : CharacterBody2D
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
 	private Ball _mainBall;
+    private Node _ballManager;
 
-	public override void _Ready(){
+    public override void _Ready(){
 		InitializeNode();
 
 	}
@@ -21,7 +22,7 @@ public partial class Player : CharacterBody2D
 
 			var originalPos=_mainBall.GlobalPosition; //Save original pos, and remove mainball from child, add to ballManager node, then set the pos and shoot.
 			RemoveChild(_mainBall);
-			GetParent().GetNode("BallManager").AddChild(_mainBall);
+			_ballManager.AddChild(_mainBall);
 			_mainBall.GlobalPosition=originalPos;
 			_mainBall.ShootBall();
 		}
@@ -39,5 +40,27 @@ public partial class Player : CharacterBody2D
 
 	private void InitializeNode(){
 		_mainBall=GetNode<Ball>("Ball");
+		_ballManager=GetParent().GetNode("BallManager");
+	}
+
+	public void AddEffect(ItemEffect e){
+
+		switch (e){
+			case ItemEffect.IncreaseSpeed:
+				foreach(Ball b in _ballManager.GetChildren()){
+					b.Speed+=50f;
+				}
+				GD.Print("Increase Speed");
+				break;
+			case ItemEffect.DecreaseSpeed:
+				foreach(Ball b in _ballManager.GetChildren()){
+					b.Speed-=50f;
+				}
+				GD.Print("Decrease Speed");
+				break;
+			
+			default:
+				break;
+		}
 	}
 }

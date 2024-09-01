@@ -14,7 +14,6 @@ public partial class ScoreLabel : Label
 		this.Text="Score: "+score.ToString();
 	}
 	public void AddScore(int value=1){
-		GD.Print("Add score");
 		this.score+=value;
 	}
 }

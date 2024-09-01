@@ -10,7 +10,6 @@ public partial class Brick : StaticBody2D
 	}
 
     public void OnHit(){
-		//TODO create item
 		PackedScene packedScene=GD.Load<PackedScene>("res://Scene/SpecialItem.tscn");
 		SpecialItem item=(SpecialItem)packedScene.Instantiate();
 		_specialItemManager.AddChild(item);
@@ -18,8 +17,5 @@ public partial class Brick : StaticBody2D
 		this.QueueFree();
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta){
-	}
 
 }
