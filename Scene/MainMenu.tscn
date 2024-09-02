@@ -46,6 +46,11 @@ layout_mode = 2
 text = "Start Game
 "
 
+[node name="HighScoresBtn" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "High Scores
+"
+
 [node name="QuitBtn" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Quit

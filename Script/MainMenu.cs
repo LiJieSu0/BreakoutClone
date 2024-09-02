@@ -3,8 +3,10 @@ using System;
 
 public partial class MainMenu : CanvasLayer
 {
-	Button _startBtn;
+	private Button _startBtn;
     private Button _quitBtn;
+    private Button _highScoresBtn;
+
 
     public override void _Ready()
 	{
@@ -18,12 +20,19 @@ public partial class MainMenu : CanvasLayer
 	private void InitializeNode(){
 		_startBtn=GetNode<Button>("Control/VBoxContainer/StartBtn");
 		_quitBtn=GetNode<Button>("Control/VBoxContainer/QuitBtn");
+		_highScoresBtn=GetNode<Button>("Control/VBoxContainer/HighScoresBtn");
 	}
 
 	private void InitializeSignal(){
 		_startBtn.Pressed+=ChangeScene;
 		_quitBtn.Pressed+=QuitGame;
+		_highScoresBtn.Pressed+=ShowHighScorePanel;
 	}
+
+    private void ShowHighScorePanel(){
+		//TODO show high score history
+    }
+
 
     private void QuitGame(){
 		GetTree().Quit();
