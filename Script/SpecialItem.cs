@@ -11,12 +11,15 @@ public enum ItemEffect{
 
 public partial class SpecialItem : CharacterBody2D{
 	[Export] float downSpeed=50f;
+	[Export] Color firstColor;
 	Node _ballManager;
 	ItemEffect itemEffect=ItemEffect.None;
 	public override void _PhysicsProcess(double delta)
 	{
 		if(itemEffect==ItemEffect.None){
-			//TODO load special sprite here
+			Sprite2D sprite=GetNode<Sprite2D>("Sprite2D");
+			ShaderMaterial shaderMaterial=(ShaderMaterial)sprite.GetMaterial();
+			shaderMaterial.SetShaderParameter("SpriteColor",firstColor);
 			itemEffect=GetRndEffect();
 		}
 		Vector2 velocity = Velocity;
