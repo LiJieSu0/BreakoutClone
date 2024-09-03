@@ -20,6 +20,7 @@ public partial class UI_Controller : Node
 		if(Input.IsActionJustPressed("show_menu")){
 			_historyPanel.Visible=!_historyPanel.Visible;
 			Engine.TimeScale=_historyPanel.Visible?0:1;
+			// GetTree().Paused=_historyPanel.Visible;
 		}
 	}
 	

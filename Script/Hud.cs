@@ -35,8 +35,7 @@ public partial class Hud : CanvasLayer{
 		_submitBtn.Pressed+=ShowRecord;
 		GameManager.Instance.gameOverEvent+=ShowGameOverMenu;
 		GetNode<Button>("GameOver/PlayAgainBtn").Pressed+=()=>{
-			PackedScene scene=GD.Load<PackedScene>("res://Scene/MainScene.tscn");
-			GetTree().ChangeSceneToPacked(scene);
+			GetTree().ReloadCurrentScene();
 		};
 		GetNode<Button>("GameOver/QuitBtn").Pressed+=()=>{
 			PackedScene scene=GD.Load<PackedScene>("res://Scene/MainMenu.tscn");

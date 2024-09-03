@@ -20,6 +20,7 @@ public partial class GameManager : Node2D{
 
     public override void _EnterTree(){
     	Instance=this;
+		Engine.TimeScale=1;
     }
     public override void _Ready()
 	{
@@ -34,6 +35,7 @@ public partial class GameManager : Node2D{
 
     public override void _Process(double delta)
 	{
+		GD.Print("running");
 		if((isGameStarted&&BallManager.GetChildCount()==0) ||BrickManager.GetChildCount()==0){ //TODO add if brick equal to zero
 			gameState=GameState.GameOver;
 		}
