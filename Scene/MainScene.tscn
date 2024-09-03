@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw6t44c5d86x6"]
+[gd_scene load_steps=14 format=3 uid="uid://dw6t44c5d86x6"]
 
 [ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_6gyws"]
 [ext_resource type="Script" path="res://Script/Player.cs" id="1_b8taj"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://fcg8mcrkltjn" path="res://Scene/Brick.tscn" id="5_876y1"]
 [ext_resource type="Script" path="res://Script/TimerLabel.cs" id="6_ixoaw"]
 [ext_resource type="Script" path="res://Script/ScoreLabel.cs" id="7_lsxpv"]
+[ext_resource type="PackedScene" uid="uid://bl1lu30ylmpjt" path="res://Scene/HUD.tscn" id="8_ds6nk"]
+[ext_resource type="Script" path="res://Script/UI_Controller.cs" id="9_1isnk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3sa4f"]
 size = Vector2(127, 8)
@@ -138,3 +140,8 @@ offset_bottom = 155.0
 theme_override_font_sizes/font_size = 50
 text = "Score: 999"
 script = ExtResource("7_lsxpv")
+
+[node name="HUD" parent="." instance=ExtResource("8_ds6nk")]
+
+[node name="UI_Controller" type="Node" parent="."]
+script = ExtResource("9_1isnk")

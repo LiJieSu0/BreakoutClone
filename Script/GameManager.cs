@@ -14,13 +14,17 @@ public partial class GameManager : Node2D{
 
 	private Area2D OutArea;
 	public GameState gameState;
+	public delegate void GameOverPublisher();
+	public event GameOverPublisher gameOverEvent;
 	public bool isGameStarted=false;
 
-	public override void _Ready()
+    public override void _EnterTree(){
+    	Instance=this;
+    }
+    public override void _Ready()
 	{
 		InitializeNode();
 		OutArea.BodyEntered+=RemoveBall;
-		Instance=this;
 		gameState=GameState.GameReady;
 	}
 
@@ -35,7 +39,7 @@ public partial class GameManager : Node2D{
 		}
 		if(gameState==GameState.GameOver){
 			Engine.TimeScale=0;
-			GD.Print("GameOver");
+			GameOverTrigger();
 		}
 
 	}
@@ -45,4 +49,8 @@ public partial class GameManager : Node2D{
 		BrickManager=GetNode("BrickManager");
 		OutArea=GetNode<Area2D>("OutArea");
 	}
+	private void GameOverTrigger(){
+		gameOverEvent.Invoke();
+	}
+
 }

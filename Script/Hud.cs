@@ -21,6 +21,7 @@ public partial class Hud : CanvasLayer{
 	}
 
 	public override void _Process(double delta){
+
 	}
 	
 	private void InitializeNode(){
@@ -32,6 +33,15 @@ public partial class Hud : CanvasLayer{
 	
 	private void InitializeSignal(){
 		_submitBtn.Pressed+=ShowRecord;
+		GameManager.Instance.gameOverEvent+=ShowGameOverMenu;
+		GetNode<Button>("GameOver/PlayAgainBtn").Pressed+=()=>{
+			PackedScene scene=GD.Load<PackedScene>("res://Scene/MainScene.tscn");
+			GetTree().ChangeSceneToPacked(scene);
+		};
+		GetNode<Button>("GameOver/QuitBtn").Pressed+=()=>{
+			PackedScene scene=GD.Load<PackedScene>("res://Scene/MainMenu.tscn");
+			GetTree().ChangeSceneToPacked(scene);
+		};
 	}
 
     private void AddRecord(){
@@ -96,4 +106,9 @@ public partial class Hud : CanvasLayer{
 		GetNode("HistoryScore/HistoryPanel/VBoxContainer/HBoxContainer/NameContainer").AddChild(nameLabel);
 		GetNode("HistoryScore/HistoryPanel/VBoxContainer/HBoxContainer/ScoreContainer").AddChild(scoreLabel);
 	}
+
+	public void ShowGameOverMenu(){
+		GetNode<Control>("GameOver").Show();
+	}
+
 }
