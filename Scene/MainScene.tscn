@@ -29,6 +29,7 @@ script = ExtResource("1_nwie3")
 position = Vector2(574, 327)
 
 [node name="Player" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(525, 604)
 script = ExtResource("1_b8taj")
 

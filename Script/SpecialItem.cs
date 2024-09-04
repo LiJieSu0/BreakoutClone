@@ -5,7 +5,8 @@ public enum ItemEffect{
 	None,
 	IncreaseSpeed,
 	DecreaseSpeed,
-
+    BallDuplicate2,
+	PlayerLengthIncrease,
 
 }
 
@@ -14,6 +15,7 @@ public partial class SpecialItem : CharacterBody2D{
 	[Export] Color firstColor;
 	Node _ballManager;
 	ItemEffect itemEffect=ItemEffect.None;
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if(itemEffect==ItemEffect.None){
@@ -29,7 +31,7 @@ public partial class SpecialItem : CharacterBody2D{
 		for (int i = 0; i < GetSlideCollisionCount(); i++){
 			var collision = GetSlideCollision(i);
 			if(collision.GetCollider() is Player player){
-				player.AddEffect(itemEffect);
+				player.ReceiveEffectTrigger(this.itemEffect);
 				GD.Print("I collided with ", ((Node)collision.GetCollider()).Name);
 				this.QueueFree();
 			}
@@ -42,5 +44,6 @@ public partial class SpecialItem : CharacterBody2D{
 		int randomIndex = random.Next(values.Length);
 		return (ItemEffect)values.GetValue(randomIndex);
 	}
+
 
 }

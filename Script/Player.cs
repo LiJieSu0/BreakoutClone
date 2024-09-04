@@ -7,7 +7,8 @@ public partial class Player : CharacterBody2D
 	public const float JumpVelocity = -400.0f;
 	private Ball _mainBall;
     private Node _ballManager;
-
+	public delegate void ReceiveEffectPublisher(ItemEffect effect);
+	public event ReceiveEffectPublisher ReceiveEffectEvent;
     public override void _Ready(){
 		InitializeNode();
 
@@ -44,25 +45,22 @@ public partial class Player : CharacterBody2D
 		_mainBall=GetNode<Ball>("Ball");
 		_ballManager=GetParent().GetNode("BallManager");
 	}
+	private void InitializeSignal(){
+		ReceiveEffectEvent+=PlayerReceiveEffect;
+	}
 
-	public void AddEffect(ItemEffect e){
-
-		switch (e){
-			case ItemEffect.IncreaseSpeed:
-				foreach(Ball b in _ballManager.GetChildren()){
-					b.Speed+=50f;
-				}
-				GD.Print("Increase Speed");
+    public void ReceiveEffectTrigger(ItemEffect effect){
+		ReceiveEffectEvent.Invoke(effect);
+	}
+    
+	private void PlayerReceiveEffect(ItemEffect effect){
+		switch(effect){
+			case ItemEffect.PlayerLengthIncrease:
 				break;
-			case ItemEffect.DecreaseSpeed:
-				foreach(Ball b in _ballManager.GetChildren()){
-					b.Speed-=50f;
-				}
-				GD.Print("Decrease Speed");
+			case ItemEffect.PlayerLengthDecrease:
 				break;
-			
 			default:
 				break;
 		}
-	}
+    }
 }
