@@ -10,10 +10,11 @@ public partial class Ball : CharacterBody2D
 
     public override void _Ready(){
 		// Velocity=new Vector2(0,0);
-		_scoreLabel=GetTree().CurrentScene.GetNode<ScoreLabel>("ScoreLabel");
-		player=GetNode<Player>("%Player");
+
+
+		player=GetTree().CurrentScene.GetNode<Player>("Player");
+		GD.Print(player==null);
 		player.ReceiveEffectEvent+=BallEffectReceived;
-		// ShootBall();
 
     }
 
@@ -26,24 +27,23 @@ public partial class Ball : CharacterBody2D
 			_dir = _dir.Bounce(collision.GetNormal());
 			if(collision.GetCollider() is Brick brick){
 				brick.OnHit();
-				_scoreLabel.AddScore();
 			}
 		}
 		MoveAndCollide(_velocity);
+		if(Input.IsActionJustPressed("ui_accept")){
+			DuplicateBalls(2);
+		}
 	}
 
-	public void SetVector(Vector2 v){
-		Velocity=v;
-	}
+	// public void SetVector(Vector2 v){
+	// 	Velocity=v;
+	// }
 
 	public Vector2 SetRandomDirection(){
 		var newDir=new Vector2();
 		int[] arr={1,-1};
 		Random random=new Random();
 		newDir.X=arr[random.Next(2)];
-		// float minValue = -1f;
-		// float maxValue = 1f;
-		// float randomFloatInRange = (float)(random.NextDouble() * (maxValue - minValue) + minValue);
 		newDir.Y=-1;
 		return newDir.Normalized();
 	}
@@ -63,6 +63,7 @@ public partial class Ball : CharacterBody2D
 				break;
 			case ItemEffect.BallDuplicate2:
 				GD.Print("ball duplicate");
+				DuplicateBalls(2);
 				//TODO duplicate 2 balls
 				break;
 
@@ -71,5 +72,10 @@ public partial class Ball : CharacterBody2D
 		}
     }
 
+    private void DuplicateBalls(int v){
+		Ball tmp=(Ball)this.Duplicate(); //TODO set direction of the ball and set the amount of duplicates
+		tmp.ShootBall();
+		this.GetParent().AddChild(tmp);
+    }
 
 }

@@ -7,7 +7,7 @@ public enum ItemEffect{
 	DecreaseSpeed,
     BallDuplicate2,
 	PlayerLengthIncrease,
-
+    PlayerLengthDecrease,
 }
 
 public partial class SpecialItem : CharacterBody2D{

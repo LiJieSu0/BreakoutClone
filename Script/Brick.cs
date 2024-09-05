@@ -7,6 +7,7 @@ public partial class Brick : StaticBody2D
 	ScoreLabel _scoreLabel;
 	public override void _Ready(){
 		_specialItemManager=GetTree().CurrentScene.GetNode("SpecialItemManager");
+		_scoreLabel=GetTree().CurrentScene.GetNode<ScoreLabel>("ScoreLabel");
 	}
 
     public void OnHit(){
@@ -14,6 +15,7 @@ public partial class Brick : StaticBody2D
 		SpecialItem item=(SpecialItem)packedScene.Instantiate();
 		_specialItemManager.AddChild(item);
 		item.GlobalPosition=this.GlobalPosition;
+		_scoreLabel.AddScore();
 		this.QueueFree();
     }
 

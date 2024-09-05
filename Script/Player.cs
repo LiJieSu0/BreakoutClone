@@ -17,9 +17,7 @@ public partial class Player : CharacterBody2D
 	{
 
 		Vector2 velocity = Velocity;
-		if (Input.IsActionJustPressed("ui_accept") ) //Space key pressed
-		{
-			GD.Print("space pressed");
+		if (Input.IsActionJustPressed("ui_accept") &&GameManager.Instance.gameState==GameState.GameReady){//Space key pressed
 			GameManager.Instance.gameState=GameState.GameStart;
 			GameManager.Instance.isGameStarted=true;
 
