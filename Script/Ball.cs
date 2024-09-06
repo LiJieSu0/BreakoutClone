@@ -4,7 +4,8 @@ using System;
 public partial class Ball : CharacterBody2D
 {
 	public float Speed = 100.0f;
-	private Vector2 _dir;
+	public Vector2 dir;
+	public Vector2 velocity;
     private ScoreLabel _scoreLabel;
 	Player player;
 
@@ -21,17 +22,17 @@ public partial class Ball : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
-		var _velocity=_dir*Speed*(float)delta;
-		KinematicCollision2D collision = MoveAndCollide(_velocity);
+		var velocity=dir*Speed*(float)delta;
+		KinematicCollision2D collision = MoveAndCollide(velocity);
 		if(collision!=null){
-			_dir = _dir.Bounce(collision.GetNormal());
+			dir = dir.Bounce(collision.GetNormal());
 			if(collision.GetCollider() is Brick brick){
 				brick.OnHit();
 			}
 		}
-		MoveAndCollide(_velocity);
+		MoveAndCollide(velocity);
 		if(Input.IsActionJustPressed("ui_accept")){
-			DuplicateBalls(2);
+			DuplicateBalls(4);
 		}
 	}
 
@@ -48,8 +49,7 @@ public partial class Ball : CharacterBody2D
 		return newDir.Normalized();
 	}
 	public void ShootBall(){
-		_dir=SetRandomDirection();
-		
+		dir=SetRandomDirection();
 	}
     private void BallEffectReceived(ItemEffect e){
 		switch (e){
@@ -72,10 +72,21 @@ public partial class Ball : CharacterBody2D
 		}
     }
 
-    private void DuplicateBalls(int v){
-		Ball tmp=(Ball)this.Duplicate(); //TODO set direction of the ball and set the amount of duplicates
-		tmp.ShootBall();
-		this.GetParent().AddChild(tmp);
+    private void DuplicateBalls(int amount){
+		var half = Mathf.FloorToInt(amount / 2);
+		GD.Print(half);
+		for(int i=1;i<1+half;i++){
+			Ball tmp = (Ball)this.Duplicate();
+			float newAngleInRadians = this.dir.Angle() + Mathf.DegToRad(5*i);
+			tmp.dir = new Vector2(Mathf.Cos(newAngleInRadians), Mathf.Sin(newAngleInRadians)).Normalized();
+			this.GetParent().AddChild(tmp);
+			tmp = (Ball)this.Duplicate();
+			newAngleInRadians = this.dir.Angle() + Mathf.DegToRad(-5*i);
+			tmp.dir = new Vector2(Mathf.Cos(newAngleInRadians), Mathf.Sin(newAngleInRadians)).Normalized();
+			this.GetParent().AddChild(tmp);
+
+		}
+
     }
 
 }
