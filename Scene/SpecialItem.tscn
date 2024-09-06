@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dxsaw0sl31svd"]
 
-[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_k6pv1"]
 [ext_resource type="Script" path="res://Script/SpecialItem.cs" id="1_tl165"]
 [ext_resource type="Shader" path="res://Script/SpecialItemShader.gdshader" id="2_3ma5i"]
+[ext_resource type="Texture2D" uid="uid://fkml3a3rxlfv" path="res://Assest/items.png" id="3_kv3oq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4xll5"]
 shader = ExtResource("2_3ma5i")
@@ -11,7 +11,7 @@ shader_parameter/SpriteColor = Color(0.694452, 0.721854, 0.184017, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_skmsc"]
 
 [node name="SpecialItem" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
+position = Vector2(101, 36)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_tl165")
@@ -19,9 +19,9 @@ firstColor = Color(0.627451, 0.254902, 0.341176, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_4xll5")
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_k6pv1")
+texture = ExtResource("3_kv3oq")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_skmsc")

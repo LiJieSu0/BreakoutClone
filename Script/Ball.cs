@@ -64,7 +64,6 @@ public partial class Ball : CharacterBody2D
 			case ItemEffect.BallDuplicate2:
 				GD.Print("ball duplicate");
 				DuplicateBalls(2);
-				//TODO duplicate 2 balls
 				break;
 
 			default:
