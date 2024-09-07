@@ -3,7 +3,7 @@ using System;
 
 public partial class ScoreLabel : Label
 {
-	int score=0;
+	public int score=0;
 	public override void _Ready()
 	{
 		this.Text="Score: "+score.ToString();

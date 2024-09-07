@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Microsoft.Data.Sqlite;
+using Godot.Collections;
 public partial class Hud : CanvasLayer{
 	#region Nodes
 	TextEdit _nameTextEdit;
@@ -34,10 +35,10 @@ public partial class Hud : CanvasLayer{
 	private void InitializeSignal(){
 		_submitBtn.Pressed+=ShowRecord;
 		GameManager.Instance.gameOverEvent+=ShowGameOverMenu;
-		GetNode<Button>("GameOver/PlayAgainBtn").Pressed+=()=>{
+		GetNode<Button>("GameOver/VBoxContainer/PlayAgainBtn").Pressed+=()=>{
 			GetTree().ReloadCurrentScene();
 		};
-		GetNode<Button>("GameOver/QuitBtn").Pressed+=()=>{
+		GetNode<Button>("GameOver/VBoxContainer/QuitBtn").Pressed+=()=>{
 			PackedScene scene=GD.Load<PackedScene>("res://Scene/MainMenu.tscn");
 			GetTree().ChangeSceneToPacked(scene);
 		};
@@ -108,6 +109,39 @@ public partial class Hud : CanvasLayer{
 
 	public void ShowGameOverMenu(){
 		GetNode<Control>("GameOver").Show();
+		int currScore=GetTree().CurrentScene.GetNode<ScoreLabel>("ScoreLabel").score;
+		float time=GetTree().CurrentScene.GetNode<TimerLabel>("TimerLabel").time;
+		int totalScore=(int)Mathf.Ceil(100-time)+currScore;
+		GetNode<Label>("GameOver/VBoxContainer/TotalScoreLabel").Text="Score: "+totalScore.ToString();
+
+		connection.Open();
+		SqliteCommand sqlCommand = connection.CreateCommand();
+		Array<int> scoreArr=new Array<int>();
+		sqlCommand.CommandText = 
+			@"
+				SELECT name, score
+				FROM player_score
+				ORDER BY score DESC
+				LIMIT 5
+			";
+		try{
+			using(var reader=sqlCommand.ExecuteReader()){
+				while(reader.Read()){
+					var name=reader.GetString(0);
+					int score=int.Parse(reader.GetString(1));
+					if(score==0)
+						continue;
+					if(totalScore>=score){
+						GetNode<TextEdit>("GameOver/VBoxContainer/NameTextEdit").Show();
+					}
+				}
+			}
+		}catch(Exception e){
+			GD.Print("Read err "+e);
+		}finally{
+			connection.Close();
+		}
+
 	}
 
 }

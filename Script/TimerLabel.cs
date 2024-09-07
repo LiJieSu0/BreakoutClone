@@ -4,7 +4,7 @@ using System;
 public partial class TimerLabel : Label
 {
 	// Called when the node enters the scene tree for the first time.
-	float time=0;
+	public float time=0;
 	public override void _Ready()
 	{
 		this.Text=time.ToString("F2");

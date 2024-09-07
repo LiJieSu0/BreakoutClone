@@ -17,6 +17,7 @@ public partial class SpecialItem : CharacterBody2D{
 	Node _ballManager;
 	ItemEffect itemEffect=ItemEffect.None;
 	Dictionary<ItemEffect,Vector2> spriteDict=new Dictionary<ItemEffect, Vector2>{ //coordinate is base on the item sprite
+		{ItemEffect.None,new Vector2(0,0)},
 		{ItemEffect.IncreaseSpeed,new Vector2(1,0)},
 		{ItemEffect.DecreaseSpeed,new Vector2(2,0)},
 		{ItemEffect.BallDuplicate2,new Vector2(3,0)},
