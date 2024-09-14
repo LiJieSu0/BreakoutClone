@@ -3,28 +3,61 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	#region Nodes
 	[Export] private Node2D Core;
+	private Path2D path;
+    private PathFollow2D pathFollow;
+	private Ball _mainBall;
+    private Node _ballManager;
+	#endregion
+	
+	#region Variables
 	private Vector2 _centerPosition;
 	private float _raidus=100f;
 	private float angle = 0f; 
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
-	private Ball _mainBall;
-    private Node _ballManager;
+	[Export]private int segments=10;
+	#endregion
+
 	public delegate void ReceiveEffectPublisher(ItemEffect effect);
 	public event ReceiveEffectPublisher ReceiveEffectEvent;
     public override void _Ready(){
 		InitializeNode();
 		InitializeVariables();
 		InitializeSignal();
+        path = new Path2D();
+		Core.AddChild(path);
+
+        // 創建 PathFollow2D 節點
+        pathFollow = new PathFollow2D();
+        path.AddChild(pathFollow);
+
+        // 創建一個圓形路徑
+        CreateCircularPath();
+		pathFollow.AddChild(this);
 
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-
-
+		if(Input.IsActionJustPressed("ui_left")){
+			pathFollow.ProgressRatio-=(float)delta;
+		}
+		if(Input.IsActionJustPressed("ui_right")){
+			pathFollow.ProgressRatio+=(float)delta;
+		}
 	}
-
+    private void CreateCircularPath()
+    {
+        var curve = new Curve2D();
+        for (int i = 0; i < segments; i++)
+        {
+            float angle = 2*Mathf.Pi * i / segments; 
+            Vector2 point = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * _raidus;
+            curve.AddPoint(point);
+        }
+        path.Curve = curve;
+    }
 	private void InitializeNode(){
 		// _mainBall=GetNode<Ball>("Ball");
 		// _ballManager=GetParent().GetNode("BallManager");
@@ -48,6 +81,24 @@ public partial class Player : CharacterBody2D
 			default:
 				break;
 		}
+    }
+
+	private void ReparentNode(Node2D node, Node2D newParent)
+    {
+        // 確認節點當前的父節點
+        Node currentParent = node.GetParent();
+
+        if (currentParent != null)
+        {
+            // 從當前父節點中移除
+            currentParent.RemoveChild(node);
+        }
+
+        // 添加到新的父節點
+        newParent.AddChild(node);
+
+        // 如果需要，可以設置新的變換（如位置）
+        node.GlobalPosition = newParent.GlobalPosition;
     }
 	private void OrignalBreakoutCloneMove(){
 		Vector2 velocity = Velocity;
