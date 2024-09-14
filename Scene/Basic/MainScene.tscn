@@ -1,17 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw6t44c5d86x6"]
+[gd_scene load_steps=7 format=3 uid="uid://dw6t44c5d86x6"]
 
-[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_6gyws"]
-[ext_resource type="Script" path="res://Script/Player.cs" id="1_b8taj"]
-[ext_resource type="Script" path="res://Script/GameManager.cs" id="1_nwie3"]
-[ext_resource type="PackedScene" uid="uid://bhygs2ahhgx47" path="res://Scene/Ball.tscn" id="3_oic01"]
-[ext_resource type="PackedScene" uid="uid://fcg8mcrkltjn" path="res://Scene/Brick.tscn" id="5_876y1"]
-[ext_resource type="Script" path="res://Script/TimerLabel.cs" id="6_ixoaw"]
-[ext_resource type="Script" path="res://Script/ScoreLabel.cs" id="7_lsxpv"]
-[ext_resource type="PackedScene" uid="uid://bl1lu30ylmpjt" path="res://Scene/HUD.tscn" id="8_ds6nk"]
-[ext_resource type="Script" path="res://Script/UI_Controller.cs" id="9_1isnk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sa4f"]
-size = Vector2(127, 8)
+[ext_resource type="PackedScene" uid="uid://bxhjpenxtgh7v" path="res://Scene/Player.tscn" id="1_2qx5v"]
+[ext_resource type="PackedScene" uid="uid://fcg8mcrkltjn" path="res://Scene/Basic/Brick.tscn" id="5_876y1"]
+[ext_resource type="PackedScene" uid="uid://bl1lu30ylmpjt" path="res://Scene/Basic/HUD.tscn" id="8_ds6nk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1mgm"]
 size = Vector2(187, 689)
@@ -23,26 +14,12 @@ size = Vector2(1158, 20)
 size = Vector2(1194, 47)
 
 [node name="Scene" type="Node2D"]
-script = ExtResource("1_nwie3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(574, 327)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_2qx5v")]
 unique_name_in_owner = true
-position = Vector2(525, 604)
-script = ExtResource("1_b8taj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_3sa4f")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(1, 0.0546875)
-texture = ExtResource("1_6gyws")
-
-[node name="Ball" parent="Player" instance=ExtResource("3_oic01")]
-position = Vector2(0, -14)
 
 [node name="BallManager" type="Node" parent="."]
 
@@ -50,51 +27,67 @@ position = Vector2(0, -14)
 
 [node name="Brick" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(96, 109)
+script = null
 
 [node name="Brick2" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(169, 109)
+script = null
 
 [node name="Brick3" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(239, 109)
+script = null
 
 [node name="Brick4" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(312, 109)
+script = null
 
 [node name="Brick5" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(382, 109)
+script = null
 
 [node name="Brick6" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(455, 109)
+script = null
 
 [node name="Brick7" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(525, 109)
+script = null
 
 [node name="Brick8" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(598, 109)
+script = null
 
 [node name="Brick9" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(601, 138)
+script = null
 
 [node name="Brick10" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(674, 138)
+script = null
 
 [node name="Brick11" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(744, 138)
+script = null
 
 [node name="Brick12" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(817, 138)
+script = null
 
 [node name="Brick13" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(887, 138)
+script = null
 
 [node name="Brick14" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(960, 138)
+script = null
 
 [node name="Brick15" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(1030, 138)
+script = null
 
 [node name="Brick16" parent="BrickManager" instance=ExtResource("5_876y1")]
 position = Vector2(1103, 138)
+script = null
 
 [node name="SpecialItemManager" type="Node" parent="."]
 
@@ -131,7 +124,6 @@ offset_bottom = 92.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "99.99"
-script = ExtResource("6_ixoaw")
 
 [node name="ScoreLabel" type="Label" parent="."]
 offset_left = 885.0
@@ -140,9 +132,8 @@ offset_right = 1102.0
 offset_bottom = 155.0
 theme_override_font_sizes/font_size = 50
 text = "Score: 999"
-script = ExtResource("7_lsxpv")
 
 [node name="HUD" parent="." instance=ExtResource("8_ds6nk")]
+script = null
 
 [node name="UI_Controller" type="Node" parent="."]
-script = ExtResource("9_1isnk")

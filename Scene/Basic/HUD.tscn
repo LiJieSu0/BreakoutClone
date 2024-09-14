@@ -126,6 +126,7 @@ offset_right = 272.0
 offset_bottom = 163.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Label" type="Label" parent="GameOver/VBoxContainer"]
@@ -151,11 +152,27 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Quit to Main menu"
 
-[node name="NameTextEdit" type="TextEdit" parent="GameOver/VBoxContainer"]
+[node name="AddRecord" type="Control" parent="GameOver/VBoxContainer"]
 visible = false
+layout_mode = 2
+
+[node name="NameTextEdit" type="TextEdit" parent="GameOver/VBoxContainer/AddRecord"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
+offset_left = 197.0
+offset_top = -2.0
+offset_right = 297.0
+offset_bottom = 28.0
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 10
 placeholder_text = "Enter your name
+"
+
+[node name="SubmitBtn" type="Button" parent="GameOver/VBoxContainer/AddRecord"]
+layout_mode = 0
+offset_left = 317.0
+offset_top = -3.0
+offset_right = 374.0
+offset_bottom = 28.0
+text = "Submit
 "

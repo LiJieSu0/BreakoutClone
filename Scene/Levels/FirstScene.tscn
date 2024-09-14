@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cavl73ge4864j"]
+
+[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_dcohp"]
+[ext_resource type="PackedScene" uid="uid://bxhjpenxtgh7v" path="res://Scene/Player.tscn" id="2_wbjt3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_unvna"]
+radius = 64.1249
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbj0a"]
+size = Vector2(46, 755.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_piblm"]
+size = Vector2(1280, 40)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Core" type="Sprite2D" parent="."]
+position = Vector2(673, 373)
+texture = ExtResource("1_dcohp")
+
+[node name="Area2D" type="Area2D" parent="Core"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Core/Area2D"]
+shape = SubResource("CircleShape2D_unvna")
+
+[node name="Player" parent="." node_paths=PackedStringArray("Core") instance=ExtResource("2_wbjt3")]
+Core = NodePath("../Core")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area2D"]
+position = Vector2(-24, 349.75)
+shape = SubResource("RectangleShape2D_hbj0a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/Area2D"]
+position = Vector2(1303, 350)
+shape = SubResource("RectangleShape2D_hbj0a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/Area2D"]
+position = Vector2(640, 741)
+shape = SubResource("RectangleShape2D_piblm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/Area2D"]
+position = Vector2(641, -19)
+shape = SubResource("RectangleShape2D_piblm")

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Microsoft.Data.Sqlite;
 using Godot.Collections;
+using System.Threading.Tasks;
 public partial class Hud : CanvasLayer{
 	#region Nodes
 	TextEdit _nameTextEdit;
@@ -44,29 +45,7 @@ public partial class Hud : CanvasLayer{
 		};
 	}
 
-    private void AddRecord(){
-		string name=_nameTextEdit.Text;
-		string score=_scoreTextEdit.Text;
-		if(name==""||score=="")
-			return;
-		connection.Open();
-		SqliteCommand sqlCommand = connection.CreateCommand();
-		sqlCommand.CommandText = 
-			@"
-				INSERT INTO player_score (name,score)
-				VALUES (@name, @score)
-			";
-		sqlCommand.Parameters.AddWithValue("@name",name);
-		sqlCommand.Parameters.AddWithValue("@score",score);
-		try{
-			sqlCommand.ExecuteNonQuery();
-			GD.Print("Inserted value");
-		}catch(Exception e){
-			GD.Print("Something error when inserting");
-		}finally{
-			connection.Close();
-		}
-    }
+
 
 	private void ShowRecord(){
 		connection.Open();
@@ -108,12 +87,16 @@ public partial class Hud : CanvasLayer{
 	}
 
 	public void ShowGameOverMenu(){
+		connection.Open();
 		GetNode<Control>("GameOver").Show();
 		int currScore=GetTree().CurrentScene.GetNode<ScoreLabel>("ScoreLabel").score;
 		float time=GetTree().CurrentScene.GetNode<TimerLabel>("TimerLabel").time;
 		int totalScore=(int)Mathf.Ceil(100-time)+currScore;
 		GetNode<Label>("GameOver/VBoxContainer/TotalScoreLabel").Text="Score: "+totalScore.ToString();
-
+		Button submitBtn=GetNode<Button>("GameOver/VBoxContainer/AddRecord/SubmitBtn");
+		submitBtn.ButtonUp+=async ()=>{
+			await AddRecord(totalScore);
+		};
 		connection.Open();
 		SqliteCommand sqlCommand = connection.CreateCommand();
 		Array<int> scoreArr=new Array<int>();
@@ -131,17 +114,53 @@ public partial class Hud : CanvasLayer{
 					int score=int.Parse(reader.GetString(1));
 					if(score==0)
 						continue;
-					if(totalScore>=score){
-						GetNode<TextEdit>("GameOver/VBoxContainer/NameTextEdit").Show();
-					}
+					scoreArr.Add(score);
 				}
 			}
 		}catch(Exception e){
 			GD.Print("Read err "+e);
+			connection.Close();
 		}finally{
 			connection.Close();
+			GD.Print("readClose");
 		}
 
+		foreach(var s in scoreArr){
+			if(totalScore>=s){
+				GetNode<Control>("GameOver/VBoxContainer/AddRecord").Show();
+				break;
+			}
+		}
 	}
+    private async Task AddRecord(int score){
+		connection.Open();
+		GD.Print("add record Btn pressed");
+		string name = GetNode<TextEdit>("GameOver/VBoxContainer/AddRecord/NameTextEdit").Text;
+		if (string.IsNullOrEmpty(name))
+			return;
+		await Task.Run(() =>{
+			SqliteCommand sqlCommand = connection.CreateCommand();
+			sqlCommand.CommandText =
+				@"
+					INSERT INTO player_score (name,score)
+					VALUES (@name, @score)
+				";
+			sqlCommand.Parameters.AddWithValue("@name", name);
+			sqlCommand.Parameters.AddWithValue("@score", score);
 
+			try
+			{
+				sqlCommand.ExecuteNonQuery();
+				GD.Print("Inserted value");
+			}
+			catch (Exception e)
+			{
+				GD.Print("Something error when inserting: " + e.Message);
+			}
+			finally{
+				connection.Close();
+				GD.Print("Connection close");
+			}
+		});
+    }
 }
