@@ -23,7 +23,9 @@ point_count = 2
 script = ExtResource("1_fd8di")
 _playerScene = ExtResource("2_wbjt3")
 Core = NodePath("Core")
-segments = 32
+segments = 8
+
+[node name="BallManager" type="Node" parent="."]
 
 [node name="Core" type="Sprite2D" parent="."]
 position = Vector2(673, 373)

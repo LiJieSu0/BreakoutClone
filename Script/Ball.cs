@@ -10,10 +10,7 @@ public partial class Ball : CharacterBody2D
 	Player player;
 
     public override void _Ready(){
-		// Velocity=new Vector2(0,0);
-
-
-		player=GetTree().CurrentScene.GetNode<Player>("Player");
+		player=GetTree().CurrentScene.GetNode<Player>("Player"); //TODO change to controller pattern
 		GD.Print(player==null);
 		player.ReceiveEffectEvent+=BallEffectReceived;
 
