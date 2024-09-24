@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cavl73ge4864j"]
+[gd_scene load_steps=7 format=3 uid="uid://cavl73ge4864j"]
 
 [ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_dcohp"]
 [ext_resource type="Script" path="res://Script/Levels/SceneManager.cs" id="1_fd8di"]
@@ -12,12 +12,6 @@ size = Vector2(46, 755.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_piblm"]
 size = Vector2(1280, 40)
-
-[sub_resource type="Curve2D" id="Curve2D_twf0p"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 429, 171, -10.0113, 148.167, 10.0113, -148.167, 885, 174)
-}
-point_count = 2
 
 [node name="SceneManager" type="Node2D" node_paths=PackedStringArray("Core")]
 script = ExtResource("1_fd8di")
@@ -38,27 +32,21 @@ shape = SubResource("CircleShape2D_unvna")
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Walls"]
+[node name="StaticBody" type="StaticBody2D" parent="Walls"]
+collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody"]
 position = Vector2(-24, 349.75)
 shape = SubResource("RectangleShape2D_hbj0a")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody"]
 position = Vector2(1303, 350)
 shape = SubResource("RectangleShape2D_hbj0a")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/Area2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/StaticBody"]
 position = Vector2(640, 741)
 shape = SubResource("RectangleShape2D_piblm")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/Area2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody"]
 position = Vector2(641, -19)
 shape = SubResource("RectangleShape2D_piblm")
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_twf0p")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(429, 171)
-rotation = 0.00657885

@@ -16,3 +16,8 @@ shape = SubResource("RectangleShape2D_3sa4f")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 0.0546875)
 texture = ExtResource("1_xfsqt")
+
+[node name="Origin" type="Node2D" parent="."]
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(0, -10)

@@ -23,15 +23,7 @@ public partial class SceneManager : Node2D
 	{
 		InitializeNode();
 		InitializeVariables();
-		line2D = new Line2D();
-		path = new Path2D();
-		AddChild(path);
-		CreateCircularPath();
-        pathFollow = new PathFollow2D();
-        path.AddChild(pathFollow);
-		Player _player=_playerScene.Instantiate<Player>();
-		pathFollow.AddChild(_player);
-		pathFollow.ProgressRatio=0;
+
 
 	}
 
@@ -46,7 +38,6 @@ public partial class SceneManager : Node2D
 		Vector2 origin=Vector2.Zero;
         for (int i = 0; i < segments; i++)
         {
-
             float angle = 2*Mathf.Pi * i / segments; 
             Vector2 point = _centerPoint+new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * _raidus;
             curve.AddPoint(point);
@@ -55,12 +46,10 @@ public partial class SceneManager : Node2D
         }
 		curve.AddPoint(origin);
         path.Curve = curve;
-		for (int i = 0; i < curve.GetPointCount(); i++)
+		for (int i = 0; i < curve.GetPointCount(); i++)//draw line
         {
             line2D.AddPoint(curve.GetPointPosition(i));
         }
-
-        // Customize the Line2D appearance (optional)
         line2D.Width = 2;
         line2D.DefaultColor = Colors.Red;
 		AddChild(line2D);
@@ -76,7 +65,15 @@ public partial class SceneManager : Node2D
 	
 	private void InitializeVariables(){
 		_centerPoint=Core.GlobalPosition;
-	
+		line2D = new Line2D();
+		path = new Path2D();
+		AddChild(path);
+		CreateCircularPath();
+        pathFollow = new PathFollow2D();
+        path.AddChild(pathFollow);
+		Player _player=_playerScene.Instantiate<Player>();
+		pathFollow.AddChild(_player);
+		pathFollow.ProgressRatio=0;
 	}
 
 }

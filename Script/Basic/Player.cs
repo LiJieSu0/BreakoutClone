@@ -8,6 +8,8 @@ public partial class Player : CharacterBody2D
 	private Ball _mainBall;
     private Node _ballManager;
 	private PathFollow2D pathFollow;
+	private Node2D _origin;
+	private Node2D _target;
 	#endregion
 	
 	#region Variables
@@ -15,6 +17,7 @@ public partial class Player : CharacterBody2D
 	private float angle = 0f; 
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
+	public Vector2 facingDir;
 	[Export]private int segments=10;
 	#endregion
 
@@ -27,18 +30,39 @@ public partial class Player : CharacterBody2D
 
 	}
 	public override void _PhysicsProcess(double delta)
-	{
-		if(Input.IsActionPressed("ui_left")){
-			pathFollow.ProgressRatio-=(float)delta;
-		}
-		if(Input.IsActionPressed("ui_right")){
-			pathFollow.ProgressRatio+=(float)delta;
-		}
-	}
+    {
+        Controller(delta);
+		facingDir=(_target.GlobalPosition-_origin.GlobalPosition).Normalized();
+    }
 
-	private void InitializeNode(){
+    private void Controller(double delta)
+    {
+		#region Moving
+        if (Input.IsActionPressed("ui_left"))
+        {
+            pathFollow.ProgressRatio -= (float)delta;
+        }
+        if (Input.IsActionPressed("ui_right"))
+        {
+            pathFollow.ProgressRatio += (float)delta;
+        }
+		#endregion
+
+		if(Input.IsActionJustPressed("ui_accept")){
+			PackedScene packedScene=GD.Load<PackedScene>("res://Scene/Ball.tscn");
+			Ball ball=(Ball)packedScene.Instantiate();
+			_ballManager.AddChild(ball);
+			ball.GlobalPosition=_target.GlobalPosition;
+			ball.ShootBall(facingDir);
+			GD.Print("Create Ball");
+		}
+    }
+
+    private void InitializeNode(){
 		// _mainBall=GetNode<Ball>("Ball");
-		// _ballManager=GetParent().GetNode("BallManager");
+		_ballManager=GetTree().CurrentScene.GetNode("BallManager");
+		_origin=GetNode<Node2D>("Origin");
+		_target=GetNode<Node2D>("Target");
 		pathFollow=this.GetParent<PathFollow2D>();
 	}
 	private void InitializeSignal(){
@@ -71,7 +95,6 @@ public partial class Player : CharacterBody2D
 			RemoveChild(_mainBall);
 			_ballManager.AddChild(_mainBall);
 			_mainBall.GlobalPosition=originalPos;
-			_mainBall.ShootBall();
 		}
 
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");

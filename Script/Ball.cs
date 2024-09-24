@@ -3,17 +3,14 @@ using System;
 
 public partial class Ball : CharacterBody2D
 {
-	public float Speed = 100.0f;
+	public float Speed = 150.0f;
 	public Vector2 dir;
 	public Vector2 velocity;
     private ScoreLabel _scoreLabel;
 	Player player;
-
+	//TODO add rebound limit and goback to center
     public override void _Ready(){
-		player=GetTree().CurrentScene.GetNode<Player>("Player"); //TODO change to controller pattern
-		GD.Print(player==null);
-		player.ReceiveEffectEvent+=BallEffectReceived;
-
+		// player.ReceiveEffectEvent+=BallEffectReceived;
     }
 
 
@@ -33,9 +30,6 @@ public partial class Ball : CharacterBody2D
 		}
 	}
 
-	// public void SetVector(Vector2 v){
-	// 	Velocity=v;
-	// }
 
 	public Vector2 SetRandomDirection(){
 		var newDir=new Vector2();
@@ -45,8 +39,8 @@ public partial class Ball : CharacterBody2D
 		newDir.Y=-1;
 		return newDir.Normalized();
 	}
-	public void ShootBall(){
-		dir=SetRandomDirection();
+	public void ShootBall(Vector2 initDir){
+		dir=initDir;
 	}
     private void BallEffectReceived(ItemEffect e){
 		switch (e){
