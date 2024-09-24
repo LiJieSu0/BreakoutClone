@@ -20,4 +20,4 @@ texture = ExtResource("1_xfsqt")
 [node name="Origin" type="Node2D" parent="."]
 
 [node name="Target" type="Node2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -50)

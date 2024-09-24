@@ -3,13 +3,20 @@ using System;
 
 public partial class Ball : CharacterBody2D
 {
+	#region Nodes
+    private ScoreLabel _scoreLabel;
+	#endregion
+	
+	#region Variables
+	private Vector2 _corePosition;
+	public int _bounceLimit=3;
 	public float Speed = 150.0f;
 	public Vector2 dir;
 	public Vector2 velocity;
-    private ScoreLabel _scoreLabel;
-	Player player;
+	#endregion
 	//TODO add rebound limit and goback to center
     public override void _Ready(){
+		InitializeVariables();
 		// player.ReceiveEffectEvent+=BallEffectReceived;
     }
 
@@ -19,15 +26,22 @@ public partial class Ball : CharacterBody2D
 		var velocity=dir*Speed*(float)delta;
 		KinematicCollision2D collision = MoveAndCollide(velocity);
 		if(collision!=null){
+			_bounceLimit--;
+			GD.Print("Bounce times "+_bounceLimit);
 			dir = dir.Bounce(collision.GetNormal());
+			if(collision.GetCollider() is Player){
+				_bounceLimit=3;
+			}
 			if(collision.GetCollider() is Brick brick){
 				brick.OnHit();
 			}
+			if(_bounceLimit==0){
+				//TODO change state
+				dir=(_corePosition-this.GlobalPosition).Normalized();
+				GD.Print(" back to core "+dir);
+			}
 		}
 		MoveAndCollide(velocity);
-		if(Input.IsActionJustPressed("ui_accept")){
-			DuplicateBalls(4);
-		}
 	}
 
 
@@ -78,5 +92,17 @@ public partial class Ball : CharacterBody2D
 		}
 
     }
+
+	private void InitializeNode(){
+		
+	}
+	
+	private void InitializeSignal(){
+	
+	}
+	
+	private void InitializeVariables(){
+		_corePosition=GetTree().CurrentScene.GetNode<Node2D>("Core").GlobalPosition;
+	}
 
 }

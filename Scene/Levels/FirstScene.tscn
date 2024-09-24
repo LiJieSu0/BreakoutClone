@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cavl73ge4864j"]
+[gd_scene load_steps=8 format=3 uid="uid://cavl73ge4864j"]
 
 [ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_dcohp"]
 [ext_resource type="Script" path="res://Script/Levels/SceneManager.cs" id="1_fd8di"]
 [ext_resource type="PackedScene" uid="uid://bxhjpenxtgh7v" path="res://Scene/Player.tscn" id="2_wbjt3"]
+[ext_resource type="Script" path="res://Script/Core.cs" id="4_x40oi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unvna"]
 radius = 64.1249
@@ -24,8 +25,10 @@ segments = 8
 [node name="Core" type="Sprite2D" parent="."]
 position = Vector2(673, 373)
 texture = ExtResource("1_dcohp")
+script = ExtResource("4_x40oi")
 
 [node name="Area2D" type="Area2D" parent="Core"]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Core/Area2D"]
 shape = SubResource("CircleShape2D_unvna")
