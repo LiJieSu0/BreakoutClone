@@ -28,7 +28,10 @@ public partial class Core : Sprite2D{
 	}
 
     private void OnBallentered(Node2D body){
-		if(body is Ball){
+		if(body is Ball ball){
+			if(ball._bounceLimit<=0){
+				ball.Free();
+			}
 			GD.Print("Ball entered");
 		}
 		if(body is Bullet){

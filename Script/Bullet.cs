@@ -15,11 +15,10 @@ public partial class Bullet : CharacterBody2D
 		KinematicCollision2D collision = MoveAndCollide(velocity);
 		if(collision!=null){
 			if(collision.GetCollider() is Player){
-				this.Free();
 				GD.Print("Player hitted");
 			}
+			this.Free();
 		}
-
 	}
 	public void SetDir(Vector2 dir){
 		_dir=dir;

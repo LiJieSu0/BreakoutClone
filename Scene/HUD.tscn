@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://cacv73t0kvgoc"]
+[gd_scene load_steps=2 format=3 uid="uid://cacv73t0kvgoc"]
+
+[ext_resource type="Texture2D" uid="uid://dr425r2hlmil0" path="res://Assest/Red Crystal Cluster.png" id="1_wm05f"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 83.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 40
+text = "999"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wm05f")
+metadata/_edit_lock_ = true
