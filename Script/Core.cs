@@ -9,6 +9,8 @@ public partial class Core : Sprite2D{
 	#region Variables
 	
 	#endregion
+
+	//TODO create mine system
 	public override void _Ready(){
 		InitializeNode();
 		InitializeSignal();
@@ -28,6 +30,9 @@ public partial class Core : Sprite2D{
     private void OnBallentered(Node2D body){
 		if(body is Ball){
 			GD.Print("Ball entered");
+		}
+		if(body is Bullet){
+			GD.Print("Core hitted");
 		}
 
     }

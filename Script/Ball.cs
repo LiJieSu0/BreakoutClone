@@ -14,7 +14,7 @@ public partial class Ball : CharacterBody2D
 	public Vector2 dir;
 	public Vector2 velocity;
 	#endregion
-	//TODO add rebound limit and goback to center
+	//TODO add collect system
     public override void _Ready(){
 		InitializeVariables();
 		// player.ReceiveEffectEvent+=BallEffectReceived;
@@ -34,6 +34,9 @@ public partial class Ball : CharacterBody2D
 			}
 			if(collision.GetCollider() is Brick brick){
 				brick.OnHit();
+			}
+			if(collision.GetCollider() is Mob mob){
+				mob.ReceiveDmg(10);
 			}
 			if(_bounceLimit==0){
 				//TODO change state

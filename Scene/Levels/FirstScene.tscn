@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cavl73ge4864j"]
+[gd_scene load_steps=9 format=3 uid="uid://cavl73ge4864j"]
 
 [ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_dcohp"]
 [ext_resource type="Script" path="res://Script/Levels/SceneManager.cs" id="1_fd8di"]
 [ext_resource type="PackedScene" uid="uid://bxhjpenxtgh7v" path="res://Scene/Player.tscn" id="2_wbjt3"]
 [ext_resource type="Script" path="res://Script/Core.cs" id="4_x40oi"]
+[ext_resource type="PackedScene" uid="uid://b36n3an6km5e" path="res://Scene/Mob.tscn" id="5_aej6h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unvna"]
 radius = 64.1249
@@ -53,3 +54,6 @@ shape = SubResource("RectangleShape2D_piblm")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody"]
 position = Vector2(641, -19)
 shape = SubResource("RectangleShape2D_piblm")
+
+[node name="Mob" parent="." instance=ExtResource("5_aej6h")]
+position = Vector2(892, 197)
