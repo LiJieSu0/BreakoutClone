@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmkoauayfdscr"]
+[gd_scene load_steps=6 format=3 uid="uid://dmkoauayfdscr"]
 
 [ext_resource type="Script" path="res://Script/TileMapTest.cs" id="1_6i42r"]
 [ext_resource type="Texture2D" uid="uid://bypcb4cjic8wc" path="res://Assest/map_pergament.png" id="1_q4yyy"]
+[ext_resource type="Script" path="res://Script/DrawDotTest.cs" id="3_p4hls"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcsq8"]
 texture = ExtResource("1_q4yyy")
@@ -3950,3 +3951,12 @@ sources/0 = SubResource("TileSetAtlasSource_rcsq8")
 [node name="TileMapLayer" type="TileMapLayer"]
 tile_set = SubResource("TileSet_fpxf7")
 script = ExtResource("1_6i42r")
+
+[node name="MapPergament" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(613, 382)
+scale = Vector2(1.15821, 1.03349)
+texture = ExtResource("1_q4yyy")
+
+[node name="DrawDot" type="Node2D" parent="."]
+script = ExtResource("3_p4hls")
