@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmkoauayfdscr"]
+[gd_scene load_steps=9 format=3 uid="uid://dmkoauayfdscr"]
 
 [ext_resource type="Script" path="res://Script/TileMapTest.cs" id="1_6i42r"]
 [ext_resource type="Texture2D" uid="uid://bypcb4cjic8wc" path="res://Assest/map_pergament.png" id="1_q4yyy"]
 [ext_resource type="Script" path="res://Script/DrawDotTest.cs" id="3_p4hls"]
 [ext_resource type="Script" path="res://Script/DrawLine.cs" id="4_frusq"]
 [ext_resource type="Script" path="res://Script/ConfirmBtn.cs" id="5_76p03"]
+[ext_resource type="PackedScene" uid="uid://t4ql8gwk75g" path="res://Scene/Camera.tscn" id="6_wdcdg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcsq8"]
 texture = ExtResource("1_q4yyy")
@@ -3953,6 +3954,9 @@ sources/0 = SubResource("TileSetAtlasSource_rcsq8")
 [node name="TileMapLayer" type="TileMapLayer"]
 tile_set = SubResource("TileSet_fpxf7")
 script = ExtResource("1_6i42r")
+
+[node name="Camera" parent="." instance=ExtResource("6_wdcdg")]
+position = Vector2(626, 354)
 
 [node name="MapPergament" type="Sprite2D" parent="."]
 z_index = -1

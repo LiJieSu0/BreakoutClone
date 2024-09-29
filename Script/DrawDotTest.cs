@@ -5,6 +5,7 @@ using System;
 public partial class DrawDotTest : Node2D
 {
 	// Called when the node enters the scene tree for the first time.
+
 	TileMapLayer tileMapLayer;
     public Godot.Collections.Array<Vector2> _dots=new Array<Vector2>();
 
@@ -26,7 +27,7 @@ public partial class DrawDotTest : Node2D
             GD.Print("Mouse clicked at: " + globalMousePosition);
 			Vector2 coordinate=tileMapLayer.LocalToMap(globalMousePosition);
 			Vector2 tmpDotPos=new Vector2(coordinate.X*16+8, coordinate.Y*16+8);
-			if(_dots.Contains(tmpDotPos)){
+			if(_dots.Contains(tmpDotPos)||!MonitorArea.isMouseEntered){
 				GD.Print("already contain");
 				return;
 			}
