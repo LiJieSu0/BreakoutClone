@@ -5,23 +5,9 @@ public partial class MonitorArea : Area2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public static bool isMouseEntered=false;
-	private CollisionPolygon2D monitorArea;
 	public override void _Ready()
 	{
 		InitializeSignal();
-		monitorArea=GetNode<CollisionPolygon2D>("Polygon2D");
-		StaticBody2D staticBody=new StaticBody2D();
-		this.AddChild(staticBody);
-		CollisionPolygon2D collisionPolygon = new CollisionPolygon2D();
-		staticBody.AddChild(collisionPolygon);
-		Vector2[] originalArr=monitorArea.Polygon;
-		GD.Print(originalArr.Length);
-        List<Vector2> innerArr = new List<Vector2>(originalArr)
-        {
-            originalArr[0]
-        };
-		GD.Print(innerArr.Count);
-
 
 	}
 

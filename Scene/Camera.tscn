@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://t4ql8gwk75g"]
+[gd_scene load_steps=5 format=3 uid="uid://t4ql8gwk75g"]
 
 [ext_resource type="Script" path="res://Script/MonitorArea.cs" id="1_lhjvf"]
+[ext_resource type="Script" path="res://Script/Camera.cs" id="1_naky5"]
 [ext_resource type="Texture2D" uid="uid://x7ws306is6nt" path="res://Assest/ezgif-2-3f32f804ba-removebg-preview.png" id="1_ypuuq"]
-[ext_resource type="Script" path="res://Script/HollowCollisionPolygon.cs" id="3_4q3jd"]
+[ext_resource type="Script" path="res://Script/MonitorCollision.cs" id="4_5kfav"]
 
 [node name="Camera" type="Camera2D"]
+script = ExtResource("1_naky5")
 
 [node name="MonitorTextureRect" type="TextureRect" parent="."]
 visible = false
@@ -26,8 +28,6 @@ position = Vector2(-455, -327)
 script = ExtResource("1_lhjvf")
 
 [node name="Polygon2D" type="CollisionPolygon2D" parent="MonitorArea"]
+visible = false
 polygon = PackedVector2Array(52, 67, 66, 43, 128, 24, 381, 1, 551, 1, 774, 28, 813, 60, 830, 116, 853, 303, 849, 559, 838, 602, 797, 642, 547, 667, 322, 666, 74, 646, 19, 594, 8, 383, 25, 157, 38.094, 113.353)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_mask = 7
-script = ExtResource("3_4q3jd")
+script = ExtResource("4_5kfav")
