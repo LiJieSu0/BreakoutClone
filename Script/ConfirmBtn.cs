@@ -24,6 +24,9 @@ public partial class ConfirmBtn : Button
 	private void InitializeSignal(){
 		this.Pressed+=()=>{
 			CreatePath();
+			GetParent<TileMapTest>().ConfirmBtnPressed();
+			GetParent().GetNode("DrawDot").GetNode<DrawLine>("DrawLine").ConfirmBtnPressed();
+			//CLEAR line
 		};
 	}
 	

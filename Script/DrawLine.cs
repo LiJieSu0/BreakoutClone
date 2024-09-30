@@ -11,6 +11,7 @@ public partial class DrawLine : Node2D
 	#endregion
 	
 	#region Variables
+	private bool isConfirmed=false;
 	#endregion
 	public override void _Ready(){
 		InitializeNode();
@@ -21,9 +22,18 @@ public partial class DrawLine : Node2D
 	{
 	}
     public override void _Draw(){
-		var arr=_drawDot._dots;
-		for(int i = 0; i < arr.Count-1;i++){
-			DrawLine(arr[i],arr[i+1],Colors.Blue,1f);
+		if(!isConfirmed){
+			var arr=_drawDot._dots;
+			for(int i = 0; i < arr.Count-1;i++){
+				DrawLine(arr[i],arr[i+1],Colors.Blue,1f);
+			}
+		}
+		else{
+			var arr=_drawDot._dots;
+			for(int i = 0; i < arr.Count-1;i++){
+				DrawLine(arr[i],arr[i+1],Colors.Red,1f);
+			}
+			DrawLine(arr[arr.Count-1],arr[0],Colors.Red,1f);
 		}
     }
 
@@ -41,6 +51,10 @@ public partial class DrawLine : Node2D
 	public void UpdateLine(){
 		QueueRedraw();
 	}
-
+	public void ConfirmBtnPressed(){
+		GD.Print("Drawline confirmed");
+		isConfirmed=true;
+		QueueRedraw();
+	}
 
 }
