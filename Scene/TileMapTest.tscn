@@ -3956,6 +3956,8 @@ sources/0 = SubResource("TileSetAtlasSource_rcsq8")
 tile_set = SubResource("TileSet_fpxf7")
 script = ExtResource("1_6i42r")
 
+[node name="BallManager" type="Node" parent="."]
+
 [node name="Camera" parent="." instance=ExtResource("6_wdcdg")]
 position = Vector2(626, 354)
 
@@ -3982,4 +3984,5 @@ text = "Confirm
 script = ExtResource("5_76p03")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 15
 script = ExtResource("7_itsl2")

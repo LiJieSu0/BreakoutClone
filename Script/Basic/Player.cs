@@ -51,16 +51,16 @@ public partial class Player : CharacterBody2D
 		if(Input.IsActionJustPressed("ui_accept")){
 			PackedScene packedScene=GD.Load<PackedScene>("res://Scene/Ball.tscn");
 			Ball ball=(Ball)packedScene.Instantiate();
-			// _ballManager.AddChild(ball);
-			// ball.GlobalPosition=_target.GlobalPosition;
-			// ball.ShootBall(facingDir);
-			// GD.Print("Create Ball");
+			_ballManager.AddChild(ball);
+			ball.GlobalPosition=_target.GlobalPosition;
+			ball.ShootBall(facingDir);
+			GD.Print("Create Ball");
 		}
     }
 
     private void InitializeNode(){
 		// _mainBall=GetNode<Ball>("Ball");
-		// _ballManager=GetTree().CurrentScene.GetNode("BallManager");
+		_ballManager=GetTree().CurrentScene.GetNode("BallManager");
 		_origin=GetNode<Node2D>("Origin");
 		_target=GetNode<Node2D>("Target");
 		pathFollow=this.GetParent<PathFollow2D>();

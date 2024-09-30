@@ -30,7 +30,6 @@ public partial class HollowCollisionPolygon : StaticBody2D{
 
 			// 設置 CollisionPolygon2D 的多邊形
 			collisionPolygon.Polygon = hollowPolygon;
-			GD.Print("PolygonStatic created");
 		}
 
     public override void _Process(double delta){
