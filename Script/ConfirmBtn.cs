@@ -12,9 +12,7 @@ public partial class ConfirmBtn : Button
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("ui_accept")){
-			CreatePath();
-		}
+
 	}
 
 	private void InitializeNode(){

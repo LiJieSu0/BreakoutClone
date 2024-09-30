@@ -3971,7 +3971,6 @@ texture = ExtResource("1_q4yyy")
 script = ExtResource("3_p4hls")
 
 [node name="DrawLine" type="Node2D" parent="DrawDot"]
-visible = false
 script = ExtResource("4_frusq")
 
 [node name="ConfirmBtn" type="Button" parent="."]

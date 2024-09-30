@@ -48,7 +48,7 @@ public partial class Player : CharacterBody2D
         }
 		#endregion
 
-		if(Input.IsActionJustPressed("ui_accept")){
+		if(Input.IsActionJustPressed("shoot_ball")){
 			PackedScene packedScene=GD.Load<PackedScene>("res://Scene/Ball.tscn");
 			Ball ball=(Ball)packedScene.Instantiate();
 			_ballManager.AddChild(ball);
