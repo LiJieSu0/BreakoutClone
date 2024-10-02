@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmkoauayfdscr"]
+[gd_scene load_steps=12 format=3 uid="uid://dmkoauayfdscr"]
 
 [ext_resource type="Script" path="res://Script/TileMapTest.cs" id="1_6i42r"]
 [ext_resource type="Texture2D" uid="uid://bypcb4cjic8wc" path="res://Assest/map_pergament.png" id="1_q4yyy"]
-[ext_resource type="PackedScene" uid="uid://x25stjv67nri" path="res://Scene/BasicMob.tscn" id="3_jgk2f"]
+[ext_resource type="Script" path="res://Script/MobManager.cs" id="3_hh0j7"]
 [ext_resource type="Script" path="res://Script/DrawDotTest.cs" id="3_p4hls"]
 [ext_resource type="Script" path="res://Script/DrawLine.cs" id="4_frusq"]
 [ext_resource type="Script" path="res://Script/ConfirmBtn.cs" id="5_76p03"]
 [ext_resource type="PackedScene" uid="uid://t4ql8gwk75g" path="res://Scene/Camera.tscn" id="6_wdcdg"]
 [ext_resource type="Script" path="res://Script/HollowCollisionPolygon.cs" id="7_itsl2"]
+[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="9_cry6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcsq8"]
 texture = ExtResource("1_q4yyy")
@@ -3960,9 +3961,7 @@ script = ExtResource("1_6i42r")
 [node name="BallManager" type="Node" parent="."]
 
 [node name="MobManager" type="Node" parent="."]
-
-[node name="BasicMob" parent="MobManager" instance=ExtResource("3_jgk2f")]
-position = Vector2(873, 199)
+script = ExtResource("3_hh0j7")
 
 [node name="Camera" parent="." instance=ExtResource("6_wdcdg")]
 position = Vector2(626, 354)
@@ -3995,3 +3994,7 @@ script = ExtResource("7_itsl2")
 
 [node name="Core" type="Node2D" parent="."]
 position = Vector2(600, 355)
+
+[node name="Sprite2D" type="Sprite2D" parent="Core"]
+scale = Vector2(0.1875, 0.195313)
+texture = ExtResource("9_cry6v")

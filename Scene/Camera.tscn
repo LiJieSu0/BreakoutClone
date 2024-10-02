@@ -24,6 +24,8 @@ texture = ExtResource("1_ypuuq")
 
 [node name="MonitorArea" type="Area2D" parent="."]
 position = Vector2(-455, -327)
+collision_layer = 64
+collision_mask = 128
 script = ExtResource("1_lhjvf")
 
 [node name="Polygon2D" type="CollisionPolygon2D" parent="MonitorArea"]

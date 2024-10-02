@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://x25stjv67nri"]
+[gd_scene load_steps=7 format=3 uid="uid://x25stjv67nri"]
 
 [ext_resource type="Texture2D" uid="uid://cllgcl4c5doyj" path="res://Assest/DurrrSpaceShip.png" id="1_5jds6"]
+[ext_resource type="Script" path="res://Script/BasicMob.cs" id="1_36ysj"]
 [ext_resource type="Script" path="res://Script/Mob.cs" id="1_p2cby"]
 [ext_resource type="PackedScene" uid="uid://b041s26p17q6y" path="res://Scene/MobHpBar.tscn" id="3_qrdhq"]
 
@@ -11,6 +12,7 @@ radius = 21.0238
 radius = 23.0217
 
 [node name="BasicMob" type="Node2D"]
+script = ExtResource("1_36ysj")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 32
@@ -28,6 +30,8 @@ texture = ExtResource("1_5jds6")
 position = Vector2(0, -20)
 
 [node name="GeneratePreventArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GeneratePreventArea"]
 shape = SubResource("CircleShape2D_f2xoa")

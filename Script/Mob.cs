@@ -16,16 +16,18 @@ public partial class Mob : CharacterBody2D
 	//TODO make mob facint core
 	//TODO make hp bar don't rotate with mob
 
-    public override void _Ready(){
-		InitializeNode();
-		InitializeVariables();
-		InitializeSignal();
+    public override void _Ready()
+    {
+        InitializeNode();
+        InitializeVariables();
+        InitializeSignal();
 
-		Vector2 dir=_bulletSpawnPoint.GlobalPosition-this.GlobalPosition; //set the mob facing core
-		Vector2 originToCore=_core.GlobalPosition-this.GlobalPosition;
-		float angle= Mathf.RadToDeg(dir.AngleTo(originToCore)); 
-		this.Rotation=dir.AngleTo(originToCore);
+        
+
     }
+
+
+
     public override void _PhysicsProcess(double delta){
 
 	}
@@ -73,5 +75,14 @@ public partial class Mob : CharacterBody2D
 		bullet.GlobalPosition=_bulletSpawnPoint.GlobalPosition;
 		bullet.SetDir((_core.GlobalPosition-bullet.GlobalPosition).Normalized());
 	}
+    public void SetFacingDir()
+    {
+        Vector2 dir = _bulletSpawnPoint.GlobalPosition - this.GlobalPosition; //set the mob facing core
+        GD.Print(this.GlobalPosition);
+        Vector2 originToCore = _core.GlobalPosition - this.GlobalPosition;
+        float angle = Mathf.RadToDeg(dir.AngleTo(originToCore));
+        this.Rotation = dir.AngleTo(originToCore);
+        GD.Print(dir.AngleTo(originToCore));
+    }
 
 }

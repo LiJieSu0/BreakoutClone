@@ -45,6 +45,8 @@ shoot_ball={
 2d_physics/layer_4="Item"
 2d_physics/layer_5="Brick"
 2d_physics/layer_6="Enemy"
+2d_physics/layer_7="Monitor"
+2d_physics/layer_8="MobArea"
 
 [rendering]
 
