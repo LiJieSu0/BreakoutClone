@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmkoauayfdscr"]
+[gd_scene load_steps=11 format=3 uid="uid://dmkoauayfdscr"]
 
 [ext_resource type="Script" path="res://Script/TileMapTest.cs" id="1_6i42r"]
 [ext_resource type="Texture2D" uid="uid://bypcb4cjic8wc" path="res://Assest/map_pergament.png" id="1_q4yyy"]
+[ext_resource type="PackedScene" uid="uid://x25stjv67nri" path="res://Scene/BasicMob.tscn" id="3_jgk2f"]
 [ext_resource type="Script" path="res://Script/DrawDotTest.cs" id="3_p4hls"]
 [ext_resource type="Script" path="res://Script/DrawLine.cs" id="4_frusq"]
 [ext_resource type="Script" path="res://Script/ConfirmBtn.cs" id="5_76p03"]
@@ -3958,8 +3959,14 @@ script = ExtResource("1_6i42r")
 
 [node name="BallManager" type="Node" parent="."]
 
+[node name="MobManager" type="Node" parent="."]
+
+[node name="BasicMob" parent="MobManager" instance=ExtResource("3_jgk2f")]
+position = Vector2(873, 199)
+
 [node name="Camera" parent="." instance=ExtResource("6_wdcdg")]
 position = Vector2(626, 354)
+metadata/_edit_lock_ = true
 
 [node name="MapPergament" type="Sprite2D" parent="."]
 z_index = -1
@@ -3985,3 +3992,6 @@ script = ExtResource("5_76p03")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 15
 script = ExtResource("7_itsl2")
+
+[node name="Core" type="Node2D" parent="."]
+position = Vector2(600, 355)
