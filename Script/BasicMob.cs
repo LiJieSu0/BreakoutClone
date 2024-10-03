@@ -8,7 +8,7 @@ public partial class BasicMob : Node2D
 	#endregion
 	
 	#region Variables
-	private bool isInMonitor=false;	
+	private bool isValidMob=false;	
 	#endregion
 	public override void _Ready()
 	{
@@ -20,7 +20,7 @@ public partial class BasicMob : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(!isInMonitor){
+		if(!isValidMob){
 			this.QueueFree();
 			GD.Print("Mob destory");
 		}
@@ -34,8 +34,11 @@ public partial class BasicMob : Node2D
 	}
 
     private void OnMonitorDetected(Area2D area){
-		isInMonitor=true;
-		GD.Print("is in monitor "+ isInMonitor);
+		if(area is MonitorArea)
+			isValidMob=true;
+		if(area.Name=="GeneratePreventArea")
+			isValidMob=false;
+			
     }
 
     private void InitializeVariables(){
