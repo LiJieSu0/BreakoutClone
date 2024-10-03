@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Script/ConfirmBtn.cs" id="5_76p03"]
 [ext_resource type="PackedScene" uid="uid://t4ql8gwk75g" path="res://Scene/Camera.tscn" id="6_wdcdg"]
 [ext_resource type="Script" path="res://Script/HollowCollisionPolygon.cs" id="7_itsl2"]
-[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="9_cry6v"]
+[ext_resource type="PackedScene" uid="uid://74etrpmso21b" path="res://Scene/Core.tscn" id="9_3ea7v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcsq8"]
 texture = ExtResource("1_q4yyy")
@@ -3992,9 +3992,5 @@ script = ExtResource("5_76p03")
 collision_mask = 15
 script = ExtResource("7_itsl2")
 
-[node name="Core" type="Node2D" parent="."]
-position = Vector2(600, 355)
-
-[node name="Sprite2D" type="Sprite2D" parent="Core"]
-scale = Vector2(0.1875, 0.195313)
-texture = ExtResource("9_cry6v")
+[node name="Core" parent="." instance=ExtResource("9_3ea7v")]
+position = Vector2(604, 359)

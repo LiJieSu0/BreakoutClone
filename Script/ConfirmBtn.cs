@@ -22,13 +22,29 @@ public partial class ConfirmBtn : Button
 	private void InitializeSignal(){
 		this.Pressed+=()=>{
 			CreatePath();
+			CreateCore();
 			GetParent<TileMapTest>().ConfirmBtnPressed();
 			GetParent().GetNode("DrawDot").GetNode<DrawLine>("DrawLine").ConfirmBtnPressed();
 			//CLEAR line
 		};
 	}
-	
-	private void InitializeVariables(){
+
+    private void CreateCore(){
+		var dots=GetParent().GetNode<DrawDotTest>("DrawDot")._dots;
+		Vector2 tmp=new Vector2(0,0);
+		foreach(Vector2 v in dots){
+			tmp+=v;
+		}
+		Vector2 corePos=tmp/dots.Count;
+		Core core=GetTree().CurrentScene.GetNode<Core>("Core");
+		core.GlobalPosition=corePos;
+		// PackedScene corePackedScene=GD.Load<PackedScene>("res://Scene/Core.tscn");
+		// Core core=corePackedScene.Instantiate<Core>();
+		// GetTree().CurrentScene.// core.GlobalPosition=corePos;
+
+    }
+
+    private void InitializeVariables(){
 	
 	}
 	private void CreatePath(){

@@ -17,6 +17,7 @@ public partial class MobManager : Node
 		InitializeSignal();
 		InitializeVariables();
 		//TODO improve spawn point
+		//TODO create mob after core created
 		for(int i=0;i<20;i++)
 			GenerateMob();
 	}

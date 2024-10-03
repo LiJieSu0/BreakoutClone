@@ -1,13 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cavl73ge4864j"]
+[gd_scene load_steps=7 format=3 uid="uid://cavl73ge4864j"]
 
-[ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_dcohp"]
 [ext_resource type="Script" path="res://Script/Levels/SceneManager.cs" id="1_fd8di"]
 [ext_resource type="PackedScene" uid="uid://bxhjpenxtgh7v" path="res://Scene/Player.tscn" id="2_wbjt3"]
-[ext_resource type="Script" path="res://Script/Core.cs" id="4_x40oi"]
+[ext_resource type="PackedScene" uid="uid://74etrpmso21b" path="res://Scene/Core.tscn" id="3_eougv"]
 [ext_resource type="PackedScene" uid="uid://b36n3an6km5e" path="res://Scene/Mob.tscn" id="5_aej6h"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_unvna"]
-radius = 64.1249
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbj0a"]
 size = Vector2(46, 755.5)
@@ -18,21 +14,12 @@ size = Vector2(1280, 40)
 [node name="SceneManager" type="Node2D" node_paths=PackedStringArray("Core")]
 script = ExtResource("1_fd8di")
 _playerScene = ExtResource("2_wbjt3")
-Core = NodePath("Core")
+Core = NodePath("")
 segments = 8
 
 [node name="BallManager" type="Node" parent="."]
 
-[node name="Core" type="Sprite2D" parent="."]
-position = Vector2(673, 373)
-texture = ExtResource("1_dcohp")
-script = ExtResource("4_x40oi")
-
-[node name="Area2D" type="Area2D" parent="Core"]
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Core/Area2D"]
-shape = SubResource("CircleShape2D_unvna")
+[node name="Core" parent="." instance=ExtResource("3_eougv")]
 
 [node name="Walls" type="Node2D" parent="."]
 
