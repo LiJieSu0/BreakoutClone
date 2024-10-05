@@ -8,7 +8,8 @@ public partial class BasicMob : Node2D
 	#endregion
 	
 	#region Variables
-	private bool isValidMob=false;	
+	private bool isValidInCamera=false;	
+	private bool isInWall=false;
 	#endregion
 	public override void _Ready()
 	{
@@ -20,7 +21,7 @@ public partial class BasicMob : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(!isValidMob){
+		if(!isValidInCamera||isInWall){
 			this.QueueFree();
 			GD.Print("Mob destory");
 		}
@@ -31,15 +32,22 @@ public partial class BasicMob : Node2D
 	
 	private void InitializeSignal(){
 		_generatePreventArea.AreaEntered+=OnMonitorDetected;
+		_generatePreventArea.BodyEntered+=OnBodyEntered;
 	}
 
     private void OnMonitorDetected(Area2D area){
 		if(area is MonitorArea)
-			isValidMob=true;
+			isValidInCamera=true;
 		if(area.Name=="GeneratePreventArea")
-			isValidMob=false;
+			isValidInCamera=false;
 			
     }
+	private void OnBodyEntered(Node2D body){
+		if(body is StaticBody2D){
+			GD.Print("body in");
+			isInWall=true;
+		}
+	}
 
     private void InitializeVariables(){
 	

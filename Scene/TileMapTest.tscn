@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Script/ConfirmBtn.cs" id="5_76p03"]
 [ext_resource type="PackedScene" uid="uid://t4ql8gwk75g" path="res://Scene/Camera.tscn" id="6_wdcdg"]
 [ext_resource type="Script" path="res://Script/HollowCollisionPolygon.cs" id="7_itsl2"]
-[ext_resource type="PackedScene" uid="uid://74etrpmso21b" path="res://Scene/Core.tscn" id="9_3ea7v"]
+[ext_resource type="PackedScene" path="res://Scene/Core.tscn" id="9_3ea7v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcsq8"]
 texture = ExtResource("1_q4yyy")
