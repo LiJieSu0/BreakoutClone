@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmkoauayfdscr"]
+[gd_scene load_steps=13 format=3 uid="uid://dmkoauayfdscr"]
 
 [ext_resource type="Script" path="res://Script/TileMapTest.cs" id="1_6i42r"]
 [ext_resource type="Texture2D" uid="uid://bypcb4cjic8wc" path="res://Assest/map_pergament.png" id="1_q4yyy"]
 [ext_resource type="Script" path="res://Script/MobManager.cs" id="3_hh0j7"]
+[ext_resource type="Script" path="res://addons/itemeffectnode/ItemEffectNode.cs" id="3_n63w5"]
 [ext_resource type="Script" path="res://Script/DrawDotTest.cs" id="3_p4hls"]
 [ext_resource type="Script" path="res://Script/DrawLine.cs" id="4_frusq"]
 [ext_resource type="Script" path="res://Script/ConfirmBtn.cs" id="5_76p03"]
@@ -3959,6 +3960,9 @@ tile_set = SubResource("TileSet_fpxf7")
 script = ExtResource("1_6i42r")
 
 [node name="BallManager" type="Node" parent="."]
+
+[node name="ItemEffectNodeType" type="Node2D" parent="BallManager"]
+script = ExtResource("3_n63w5")
 
 [node name="MobManager" type="Node" parent="."]
 script = ExtResource("3_hh0j7")

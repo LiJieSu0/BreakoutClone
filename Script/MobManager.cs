@@ -16,10 +16,10 @@ public partial class MobManager : Node
 		InitializeNode();
 		InitializeSignal();
 		InitializeVariables();
-		//TODO improve spawn point
 		//TODO create mob after core created
-		for(int i=0;i<20;i++)
-			GenerateMob();
+		//TODO change the time create mob when the mining start, the mob should genereate time by time 
+		// for(int i=0;i<20;i++)
+		// 	GenerateMob();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -43,10 +43,8 @@ public partial class BasicMob : Node2D
 			
     }
 	private void OnBodyEntered(Node2D body){
-		if(body is StaticBody2D){
-			GD.Print("body in");
+		if(body is StaticBody2D)
 			isInWall=true;
-		}
 	}
 
     private void InitializeVariables(){

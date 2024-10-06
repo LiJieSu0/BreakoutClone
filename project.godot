@@ -24,6 +24,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="BreakoutClone"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/itemeffectnode/plugin.cfg")
+
 [input]
 
 show_menu={

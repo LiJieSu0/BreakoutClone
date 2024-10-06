@@ -15,8 +15,7 @@ public partial class Player : CharacterBody2D
 	#region Variables
 	private float _raidus=100f;
 	private float angle = 0f; 
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	public const float SpeedRate = 0.8f;
 	public Vector2 facingDir;
 	[Export]private int segments=10;
 	#endregion
@@ -54,7 +53,6 @@ public partial class Player : CharacterBody2D
 			_ballManager.AddChild(ball);
 			ball.GlobalPosition=_target.GlobalPosition;
 			ball.ShootBall(facingDir);
-			GD.Print("Create Ball");
 		}
     }
 
@@ -85,27 +83,28 @@ public partial class Player : CharacterBody2D
 		}
     }
 
-	private void OrignalBreakoutCloneMove(){
-		Vector2 velocity = Velocity;
-		if (Input.IsActionJustPressed("ui_accept") &&GameManager.Instance.gameState==GameState.GameReady){//Space key pressed
-			GameManager.Instance.gameState=GameState.GameStart;
-			GameManager.Instance.isGameStarted=true;
+	// private void OrignalBreakoutCloneMove(){
+	// 	Vector2 velocity = Velocity;
+	// 	if (Input.IsActionJustPressed("ui_accept") &&GameManager.Instance.gameState==GameState.GameReady){//Space key pressed
+	// 		GameManager.Instance.gameState=GameState.GameStart;
+	// 		GameManager.Instance.isGameStarted=true;
 
-			var originalPos=_mainBall.GlobalPosition; //Save original pos, and remove mainball from child, add to ballManager node, then set the pos and shoot.
-			RemoveChild(_mainBall);
-			_ballManager.AddChild(_mainBall);
-			_mainBall.GlobalPosition=originalPos;
-		}
+	// 		var originalPos=_mainBall.GlobalPosition; //Save original pos, and remove mainball from child, add to ballManager node, then set the pos and shoot.
+	// 		RemoveChild(_mainBall);
+	// 		_ballManager.AddChild(_mainBall);
+	// 		_mainBall.GlobalPosition=originalPos;
+	// 	}
 
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero){
-			velocity.X = direction.X * Speed;
-		}else{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-		this.Position=new Vector2(this.Position.X,600);
-		Velocity = velocity;
-		MoveAndSlide();
-	}
+	// 	Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+	// 	if (direction != Vector2.Zero){
+	// 		velocity.X = direction.X * Speed;
+	// 	}else{
+	// 		velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+	// 	}
+	// 	this.Position=new Vector2(this.Position.X,600);
+	// 	Velocity = velocity;
+	// 	MoveAndSlide();
+	// }
+
 
 }
