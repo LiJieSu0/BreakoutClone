@@ -5,6 +5,7 @@ public partial class Ball : CharacterBody2D
 {
 	#region Nodes
     private ScoreLabel _scoreLabel;
+	public Node _effectListNode;
 	#endregion
 	
 	#region Variables
@@ -97,7 +98,7 @@ public partial class Ball : CharacterBody2D
     }
 
 	private void InitializeNode(){
-		
+		_effectListNode=GetNode<Node>("EffectListNode");
 	}
 	
 	private void InitializeSignal(){
@@ -106,6 +107,10 @@ public partial class Ball : CharacterBody2D
 	
 	private void InitializeVariables(){
 		_corePosition=GetTree().CurrentScene.GetNode<Node2D>("Core").GlobalPosition;
+	}
+
+	public Node GetEffeListNode(){
+		return _effectListNode;
 	}
 
 }

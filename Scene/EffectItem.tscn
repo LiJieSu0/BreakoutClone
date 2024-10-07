@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://de7suah0a1krs"]
+[gd_scene load_steps=5 format=3 uid="uid://de7suah0a1krs"]
 
 [ext_resource type="Texture2D" uid="uid://0g1hgmo1hrji" path="res://icon.svg" id="1_0dio8"]
 [ext_resource type="Script" path="res://Script/EffectItem.cs" id="1_wn3xv"]
+[ext_resource type="Script" path="res://addons/itemeffectnode/AttackEffectItem.cs" id="3_l5is2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b6gii"]
 
@@ -18,3 +19,8 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_b6gii")
+
+[node name="EffectListNode" type="Node" parent="."]
+
+[node name="AttackEffectItem" type="Node2D" parent="EffectListNode"]
+script = ExtResource("3_l5is2")

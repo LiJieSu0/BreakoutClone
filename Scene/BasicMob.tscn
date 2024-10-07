@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cllgcl4c5doyj" path="res://Assest/DurrrSpaceShip.png" id="1_5jds6"]
 [ext_resource type="Script" path="res://Script/BasicMob.cs" id="1_36ysj"]
 [ext_resource type="Script" path="res://Script/Mob.cs" id="1_p2cby"]
-[ext_resource type="PackedScene" path="res://Scene/MobHpBar.tscn" id="3_qrdhq"]
+[ext_resource type="PackedScene" uid="uid://b041s26p17q6y" path="res://Scene/MobHpBar.tscn" id="3_qrdhq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2nimp"]
 radius = 21.0238
