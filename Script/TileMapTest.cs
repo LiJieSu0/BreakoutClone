@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using SQLitePCL;
 using System;
 
 public partial class TileMapTest : TileMapLayer{
@@ -19,6 +20,7 @@ public partial class TileMapTest : TileMapLayer{
 
     public override void _Draw()
     {
+
         GD.Print("draw line");
 		if(!isClear){
 			for(int i=1;i<GetViewportRect().Size.X/16;i++){
